@@ -1,9 +1,12 @@
 <p>
 🎮 <b>Connect 4 🔴🟡🔴🟡 Game with AI 🤖</b>
 
+
 A fun Connect 4 implementation with an intelligent AI opponent built using Python and Pygame. Drop your red pieces against the AI's yellow ones and try to connect 4 in a row!
+
   
 <b>✨ Features</b>
+
 
 🧠 Smart AI opponent using minimax algorithm
 
@@ -15,7 +18,9 @@ A fun Connect 4 implementation with an intelligent AI opponent built using Pytho
 
 🔄 Easy replay functionality
 
+
 <b>🚀 How to Play</b>
+
 
 1) Keep trainC4.py, connect4.py and heuristicRL.ipynb in the same directory
 2) Run python connect4.py
