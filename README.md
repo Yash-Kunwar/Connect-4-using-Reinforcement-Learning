@@ -1,5 +1,6 @@
 <p>
 🎮 <b>Connect Four Game with AI 🤖</b>
+
 A fun Connect Four implementation with an intelligent AI opponent built using Python and Pygame. Drop your red pieces against the AI's yellow ones and try to connect four in a row!
   
 <b>✨ Features</b>
