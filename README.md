@@ -6,9 +6,13 @@ A fun Connect 4 implementation with an intelligent AI opponent built using Pytho
 <b>✨ Features</b>
 
 🧠 Smart AI opponent using minimax algorithm
+
 📊 Real-time display of AI's thinking process
+
 🎯 Visual reward indicators for potential moves
+
 🎬 Smooth animations for piece dropping
+
 🔄 Easy replay functionality
 
 <b>🚀 How to Play</b>
