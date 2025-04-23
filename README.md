@@ -3,7 +3,6 @@
 
   A fun Connect 4 implementation with an intelligent AI opponent built using Python and Pygame. Drop your red pieces against the AI's yellow ones and try to connect 4 in a row!
   
-<b>✨ Features</b>
 
   🧠 Smart AI opponent using minimax algorithm
   
