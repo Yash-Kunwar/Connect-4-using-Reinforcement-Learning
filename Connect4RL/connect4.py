@@ -3,9 +3,10 @@ import numpy as np
 import sys
 from pygame.locals import *
 
-# Import the existing AI agent and helper functions
-from trainCX import agent, drop_piece, is_terminal_node, score_move, get_heuristic
+# Import your existing AI agent and helper functions
+from trainC4 import agent, drop_piece, is_terminal_node, score_move, get_heuristic
 
+# Initialize pygame
 pygame.init()
 
 # Colors
@@ -24,7 +25,7 @@ COLUMNS = 7
 INAROW = 4
 SQUARESIZE = 100
 RADIUS = int(SQUARESIZE/2 - 5)
-AI_SEARCH_DEPTH = 4  # Depth for minimax search
+AI_SEARCH_DEPTH = 3  # Depth for minimax search
 
 # Screen dimensions
 width = COLUMNS * SQUARESIZE
@@ -221,7 +222,7 @@ def display_rewards(rewards, total_reward, active_col=None):
     
     pygame.display.update()
 
-def play_graphic_game():
+def play_game():
     board = create_board()
     game_over = False
     turn = 0  # 0 for Player 1, 1 for AI
@@ -238,8 +239,7 @@ def play_graphic_game():
     # Clear screen and draw initial board
     screen.fill(BLACK)
     draw_board(board)
-    # Always display player rewards but with AI's total reward
-    display_rewards(player_rewards, ai_total)
+    display_rewards(player_rewards, player_total)
     
     while True:  # Main game loop
         # Handle events
@@ -262,12 +262,11 @@ def play_graphic_game():
                     turn = 0
                     show_play_again = False
                     player_rewards, player_total = calculate_rewards(board, 1, config)
-                    ai_rewards, ai_total = calculate_rewards(board, 2, config)
                     
                     # Clear screen and redraw
                     screen.fill(BLACK)
                     draw_board(board)
-                    display_rewards(player_rewards, ai_total)  # Show player rewards with AI total
+                    display_rewards(player_rewards, player_total)
                     pygame.display.update()
                     continue
             
@@ -285,7 +284,7 @@ def play_graphic_game():
                         
                         # Highlight the active column's reward
                         if col in player_rewards:
-                            display_rewards(player_rewards, ai_total, col)  # Show player rewards with AI total
+                            display_rewards(player_rewards, player_total, col)
                     
                     pygame.display.update()
                     
@@ -346,8 +345,7 @@ def play_graphic_game():
                 
                 # Update and display rewards after AI's move
                 player_rewards, player_total = calculate_rewards(board, 1, config)
-                ai_rewards, ai_total = calculate_rewards(board, 2, config)
-                display_rewards(player_rewards, ai_total)  # Show player rewards with AI total
+                display_rewards(player_rewards, player_total)
                 
                 if check_win(board, 2):
                     draw_text("AI wins!", YELLOW)
@@ -368,4 +366,4 @@ def play_graphic_game():
         pygame.time.wait(50)  # Small delay to prevent CPU hogging
             
 if __name__ == "__main__":
-    play_graphic_game()
+    play_game()
