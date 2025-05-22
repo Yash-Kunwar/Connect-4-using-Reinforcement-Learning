@@ -1,8 +1,8 @@
-# %%
+
 import numpy as np
 import random
 
-# %%
+
 # calculates score if agent drops piece in selected column
 def score_move(grid, col, mark, config):
     next_grid = drop_piece(grid, col, mark, config)
@@ -10,7 +10,7 @@ def score_move(grid, col, mark, config):
     return score
 
 
-# %%
+
 # helper function for score move - gets board at next step if agent drops piece in selected column
 def drop_piece(grid, col, mark, config):
     next_grid = grid.copy()
@@ -20,7 +20,7 @@ def drop_piece(grid, col, mark, config):
     next_grid[row][col] = mark
     return next_grid
 
-# %%
+
 # # Helper fnction for score move - gets heuristic score of the grid
 # def get_heuristic(grid, mark, config):
 #     num_threes = count_windows(grid, mark, 3, config)
@@ -29,7 +29,7 @@ def drop_piece(grid, col, mark, config):
 #     score = num_threes - 1e2*num_threes_opp + 1e6*num_fours
 #     return score
 
-# %%
+
 # Helper function for minimax: calculates value of heuristic for grid
 def get_heuristic(grid, mark, config):
     num_threes = count_windows(grid, 3, mark, config)
@@ -40,19 +40,19 @@ def get_heuristic(grid, mark, config):
     score = num_threes - 1e1*num_twos_opp - 1e2*num_threes_opp - 1e4*num_fours_opp + 1e6*num_fours
     return score
 
-# %%
+
 # Uses minimax to calculate value of dropping piece in selected column
 def score_move(grid, col, mark, config, nsteps):
     next_grid = drop_piece(grid, col, mark, config)
     score = minimax(next_grid, nsteps-1, False, mark, config)
     return score
 
-# %%
+
 # Helper function for minimax: checks if agent or opponent has four in a row in the window
 def is_terminal_window(window, config):
     return window.count(1) == config.inarow or window.count(2) == config.inarow
 
-# %%
+
 # Helper function for minimax: checks if game has ended
 def is_terminal_node(grid, config):
     # Check for draw 
@@ -85,7 +85,7 @@ def is_terminal_node(grid, config):
                 return True
     return False
 
-# %%
+
 # Minimax implementation
 def minimax(node, depth, maximizingPlayer, mark, config):
     is_terminal = is_terminal_node(node, config)
@@ -105,12 +105,12 @@ def minimax(node, depth, maximizingPlayer, mark, config):
             value = min(value, minimax(child, depth-1, True, mark, config))
         return value
 
-# %%
+
 # Helper function for get_heuristic: checks if window satisfies heuristic conditions
 def check_window(window, num_discs, piece, config):
     return (window.count(piece) == num_discs and window.count(0) == config.inarow-num_discs)
 
-# %%
+
 # Helper function for get_heuristic: counts number of windows satisfying specified heuristic conditions
 def count_windows(grid, num_discs, piece, config):
     num_windows = 0
@@ -140,7 +140,7 @@ def count_windows(grid, num_discs, piece, config):
                 num_windows += 1
     return num_windows
 
-# %%
+
 N_STEPS = 4   # Number of steps for minimax search
 
 def agent(obs, config):
@@ -155,7 +155,7 @@ def agent(obs, config):
     # Select at random from the maximizing columns
     return random.choice(max_cols)
 
-# %%
+
 from kaggle_environments import make, evaluate
 
 env = make("connectx", debug=True)
@@ -165,7 +165,7 @@ env.run([agent, "random"])
 env.render(mode="ipython")
 
 
-# %%
+
 def get_win_percentages(agent1, agent2, n_rounds=100):
     # Use default Connect Four setup
     config = {'rows': 6, 'columns': 7, 'inarow': 4}
@@ -178,11 +178,11 @@ def get_win_percentages(agent1, agent2, n_rounds=100):
     print("Number of Invalid Plays by Agent 1:", outcomes.count([None, 0]))
     print("Number of Invalid Plays by Agent 2:", outcomes.count([0, None]))
 
-# %%
+
 # get_win_percentages(agent1=agent, agent2="random", n_rounds=10)
 
 
-# %%
+
 def play_connect_four(agent, rows=6, columns=7, inarow=4):
     """
     Plays a Connect Four game against the specified agent.
